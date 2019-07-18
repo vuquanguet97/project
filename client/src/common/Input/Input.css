@@ -1,0 +1,52 @@
+.white-title {
+    color:white;
+}
+.black-title{
+    color: black;
+}
+.title{
+    font-size: 15px;
+}
+.input {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ededed;
+    border-radius: 10px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 17px;
+}
+
+.image-right{
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    right: 10px;
+  }
+  .image-right:hover{
+    cursor: pointer;
+  }
+  .image-left{
+    width: 35px;
+    height: 35px;
+    position: absolute;
+    left: 10px;
+  }
+  .image-left:hover{
+    cursor: pointer;
+  }
+
+/* .l.. */
+.inputLable {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.show-icon-left {
+    padding-left: 45px;
+}
+
+.show-icon-right {
+    padding-right: 35px;
+}
