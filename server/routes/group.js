@@ -1,3 +1,14 @@
-const router = require('express').Router();
+const express = require('express');
+const groupRouter = express.Router();
+const groupHelper = require('../helper/group')
 
-module.exports = router;
+groupRouter.route('/:groupID')
+    .get(groupHelper.getGroupInfo)
+
+groupRouter.route('/:groupID')
+    .put(groupHelper.editGroupInfo)
+
+groupRouter.route('/')
+    .post(groupHelper.createGroup)
+
+module.exports = groupRouter;

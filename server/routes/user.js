@@ -2,11 +2,6 @@ const express = require('express');
 const userRouter = express.Router();
 const userHelper = require('../helper/user')
 
-// userRouter.route('/test')
-//     .get((req, res) => {
-//         res.json('done');
-//     })
-
 userRouter.route('/test')
     .get(userHelper.test)
 
@@ -15,5 +10,11 @@ userRouter.route('/:userID')
 
 userRouter.route('/:userID')
     .put(userHelper.editUserInfo)
+
+userRouter.route('/userID/pass')
+    .put(userHelper.changePassword)
+
+userRouter.route('/:userID/friends')
+    .get(userHelper.getListFriend)
 
 module.exports = userRouter;

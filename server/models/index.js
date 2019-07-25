@@ -7,6 +7,8 @@ mongoose.connect(process.env.CONNECTION_STRING, (err) => {
 	}
 });
 
-module.exports.User = require('./User');
-module.exports.Message = require('./Message');
-module.exports.Group = require('./Group');
+const User = require('./User');
+const Message = require('./Message');
+const Group = require('./Group');
+
+module.exports = { User, Message, Group }
