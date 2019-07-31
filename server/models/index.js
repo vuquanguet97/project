@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 mongoose.set('debug', true);
-mongoose.connect(process.env.CONNECTION_STRING, (err) => {
+mongoose.connect(process.env.CONNECTION_STRING, {useNewUrlParser: true}, (err) => {
 	if (!err) {
 		console.log('Database connected!')
 	}

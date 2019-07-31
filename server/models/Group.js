@@ -9,10 +9,10 @@ const groupSchema = new mongoose.Schema({
 		type: String,
 		required: 'Group must have a name!',
 	},
-	messages: [{
-		type: mongoose.Schema.Types.ObjectId,
-		ref: 'Message',
-	}],
+	// messages: [{
+	// 	type: mongoose.Schema.Types.ObjectId,
+	// 	ref: 'Message',
+	// }],
 	founder: {
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User',

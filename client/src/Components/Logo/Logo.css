@@ -1,0 +1,23 @@
+.logoLogin{
+    width: 50%;
+    margin: 10% 0 0 25%;
+}
+.sloganLogin{
+    color: #7430b4;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 20px;
+    text-align: center;
+}
+.logoRegister{
+    margin-top: 60%;
+    width: 60%;
+    margin-left: 20%;
+}
+.sloganRegister{
+    color: white;
+    font-style: italic;
+    font-weight: 300;
+    font-size: 20px;
+    text-align: center;
+}

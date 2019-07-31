@@ -1,0 +1,45 @@
+.background{
+    background-image: url('../../assets/background.jpg');
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.formLogin{
+    width: 80vh;
+    height: 80vh;
+    background-color: white;
+    box-shadow: -1px 0px 21px -4px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -1px 0px 21px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 0px 21px -4px rgba(0,0,0,0.75);
+    margin: auto;
+    min-width: 500px;
+    min-height: 500px;
+    opacity: 0.9;
+    position: absolute;
+}
+
+.divInput{
+    width: 70%;
+    margin: 0 auto;
+}
+.divInput div:nth-child(1){
+    padding-bottom: 2%;
+}
+.buttonLogin{
+    width: 170px;
+    max-height: 70px;
+    margin: 4% auto;
+}
+.registerParent{
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+}
+.register {
+    text-align: center;
+    font-style: italic;
+    color: #8e92c8;
+    position: relative;
+    left: -50%;
+}

@@ -1,0 +1,6 @@
+.formErrors{
+    color: red;
+    font-style: italic;
+    font-size: 90%;
+    position: absolute;
+}

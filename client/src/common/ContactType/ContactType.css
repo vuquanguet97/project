@@ -1,6 +1,5 @@
 .setup {
-	width: 100%;
-	opacity : 0.5;
 	border : 0;
-	background: #ac61f2; 
+	padding: 10px 15px;
+	font-size: 13px;
 }

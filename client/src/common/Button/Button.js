@@ -10,25 +10,57 @@ class Button extends Component{
             'purple-primary',
             'purple-secondary',
             'grey-primary',
-            'maroon-primary'
+            'maroon-primary',
+            'purple-header',
         ]).isRequired,
+        size: PropTypes.oneOf([
+            'mini',
+            'large',
+            'none'
+        ]),
+        imageUrl: PropTypes.string,
+        color: PropTypes.string,
     };
+
+    static defaultProps = {
+        themeColor: 'purple-primary',
+        size: 'none',
+        title: '',
+        onClick: () => {},
+	};
 
     constructor(props){
         super(props);
     }
 
     render(){
+        if(this.props.imageUrl) {
+            return(
+                <div>
+                    <button
+                        className={`button ${this.props.themeColor} ${this.props.size}`}
+                        onClick={this.props.onClick}
 
-        return(
-            <div>
-                <button
-                    className={`button ${this.props.themeColor}`}
-                    onClick={this.props.onClick}
                     >
-                    {this.props.title}
-                </button>
-            </div>
+                        <img
+                        className={"image"}
+                        src={this.props.imageUrl}
+                        />
+                        {this.props.title}
+                    </button>
+
+
+                </div>
+            )
+        } else return (
+                <div>
+                    <button
+                        className={`button ${this.props.themeColor} ${this.props.size}`}
+                        onClick={this.props.onClick}
+                    >
+                        {this.props.title}
+                    </button>
+                </div>
         )
     }
 }

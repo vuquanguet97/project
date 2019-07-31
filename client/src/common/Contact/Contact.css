@@ -1,39 +1,48 @@
 .parent {
 	display: flex;
 	align-items: center;
+	margin-bottom: 12px;
+
 }
 
 .red-text {
-	color: black;
 	margin-left: 5px;
-	 
 }
-.cangiuatext { 
+.cangiuatext {
 	text-align: center;
 	color: blue;
  }
-.large { 
+.large-contact {
 	width:100px;
 	height:100px;
 	border-radius:60%;
+	object-fit: cover;
 }
 
-.medium{
+.medium-contact {
 	width:50px;
 	height:50px;
 	border-radius:50%;
-
+	object-fit: cover;
 }
 
-.small{
-	width:25px;
-	height:25px;
-	border-radius:70%;
-
+.small-contact {
+	width:35px;
+	height:35px;
+	border-radius:50%;
+	object-fit: cover;
 }
 .cssProfile{
 	display: block; margin-left: auto; margin-right: auto;
 	width:100px;
 	height:100px;
 	border-radius:60%;
+}
+
+.white-text {
+	color: white;
+}
+
+.black-text {
+	color: black;
 }

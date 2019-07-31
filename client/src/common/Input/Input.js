@@ -2,62 +2,93 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './Input.css';
 
-class Input extends React.Component{
-    static propTypes = {
-        title: PropTypes.string,
-        titleColor: PropTypes.string,
-        value: PropTypes.string.isRequired,
-        placeholder: PropTypes.string,
-        onChange: PropTypes.func.isRequired,
-        type: PropTypes.oneOf(['text', 'password']),
-        rightIcon: PropTypes.any,
-        leftIcon: PropTypes.any,
-        showTitle: PropTypes.bool,
-        showIconLeft: PropTypes.bool,
-        showIconRight: PropTypes.bool,
-    };
+class Input extends React.Component {
+	static propTypes = {
+		title: PropTypes.string,
+		titleColor: PropTypes.string,
+		value: PropTypes.string.isRequired,
+		placeholder: PropTypes.string,
+		onChange: PropTypes.func.isRequired,
+		type: PropTypes.string,
+		rightIcon: PropTypes.any,
+		leftIcon: PropTypes.any,
+		showTitle: PropTypes.bool,
+		name: PropTypes.string,
+		inputSize: PropTypes.oneOf([
+			'small-input',
+			'big-input'
+		]),
+		checked: PropTypes.bool,
+	};
 
-    static defaultProps = {
-        type: 'text',
-        showTitle: true,
-        titleColor: 'black-title',
-        showIconLeft:false,
-        showIconRight:false,
-    };
+	static defaultProps = {
+		type: 'text',
+		showTitle: true,
+		titleColor: 'black-title',
+		inputSize: 'big-input',
+		checked: false,
+	};
 
-    render(){
-        const paddingLeft = this.props.showIconLeft ? 'show-icon-left' : '';
-        const paddingRight = this.props.showIconRight ? 'show-icon-right':'';
+	render() {
+		const {
+			rightIcon,
+			leftIcon,
+			name,
+			type,
+			checked,
+			inputSize,
+			onChange,
+			placeholder,
+			showTitle,
+			title,
+			titleColor,
+			value,
+			onSubmit,
+			onClick
+		} = this.props;
+		const paddingLeft = leftIcon ? 'show-icon-left' : '';
+		const paddingRight = rightIcon ? 'show-icon-right' : '';
 
-        return(
-            <div className='inputLable'>
-                <div className={`title ${this.props.titleColor}`}>
-                     {this.props.showTitle && <label>{this.props.title}</label>}
-                </div>
+		return (
+			<div>
+				{showTitle && (
+					<div className={`title ${titleColor}`}>
+						<label>{title}</label>
+					</div>
+				)}
+				<div className='inputLable'>
 
-                <input type ={this.props.type}
-                    onChange = {this.props.onChange}
-                    value = {this.props.value}
-                    placeholder ={this.props.placeholder}
-                    className={`input ${paddingLeft} ${paddingRight}`}
-                    />
-                    {this.props.showIconRight &&
-                        <img
-                            className="image-right"
-                            alt="icon-send"
-                            src={this.props.rightIcon}
-                        />
-                    }
-                        {this.props.showIconLeft &&
-                            <img className="image-left"
-                            alt="icon"
-                            src={this.props.leftIcon}
-                            />
-                    }
+					<input
+						type={type}
+						onChange={onChange}
+						value={value}
+						placeholder={placeholder}
+						className={`input ${paddingLeft} ${paddingRight} ${inputSize}`}
+						name={name}
+						onSubmit={onSubmit}
+						checked={type === 'radio' && checked}
+					/>
+					{!!rightIcon &&
+					<img
+						onClick={onClick}
+						className="image-right"
+						alt="icon-send"
+						src={rightIcon}
+					/>
 
-            </div>
-        );
-    }
+					}
+
+					{!!leftIcon &&
+					<img
+						className="image-left"
+						alt="icon"
+						src={leftIcon}
+					/>
+					}
+				</div>
+			</div>
+		);
+	}
 }
 
 export default Input;

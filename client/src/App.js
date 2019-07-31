@@ -1,24 +1,26 @@
 import React from 'react';
 import './App.css';
-//import Contact from './common/Contact/Contact';
-//import ContactType from './common/Contact/ContactType';
-// import Profile from './common/Contact/Profile';
+import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
+import Register from "./screens/Register";
+import Login from "./screens/Login";
+import Chat from "./screens/Chat";
+import axios from 'axios';
+
 class App extends React.Component {
 	componentDidMount() {
-		fetch('/user/test')
-			.then(data => {
-				console.log(data);
-				return data.json();
-			})
-			.then(data => console.log(data))
+		axios.get('/user/test')
+			.then(console.log)
+			.catch(console.log)
 	}
-
 
 	render() {
 		return (
-			<div>
-				hello
-			</div>
+			<Router>
+				<Route path={'/'} exact render={() => (<Redirect to={'/register'}/>)}/>
+				<Route path={'/register'} component={Register}/>
+				<Route path={'/login'} component={Login}/>
+				<Route path={'/home'} component={Chat}/>
+			</Router>
 		);
 	}
 }

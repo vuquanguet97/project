@@ -1,0 +1,91 @@
+section{
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(rgb(244, 213, 255),rgb(174, 255, 224));
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formRegister{
+    box-shadow: -1px 0px 21px -4px rgba(0,0,0,0.75);
+    -webkit-box-shadow: -1px 0px 21px -4px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px 0px 21px -4px rgba(0,0,0,0.75);
+    width: 60vw;
+    max-width: 800px;
+    height: 85vh;
+    min-height: 600px;
+    min-width: 800px;
+    display: flex;
+}
+.left{
+    height: 85vh;
+    width: 30vw;
+    min-width: 400px;
+    min-height: 600px;
+    background: #7430b4;
+    opacity: 0.8;
+}
+.right{
+    height: 85vh;
+    width: 30vw;
+    min-width: 400px;
+    min-height: 600px;
+    background-color: white;
+    position: relative;
+}
+
+
+.radio{
+    margin: 0px 0 10px 20px;
+}
+
+.inputRegister{
+    width: 90%;
+    padding: 8px 10px;
+    border-radius: 10px;
+    border: 1px solid #8e92c8;
+}
+
+.divInputRegister{
+    color: white;
+    font-size: 13px;
+    position: absolute;
+    width: 80%;
+    left: 10%;
+    top: 5%;
+}
+.divInputRegister div:nth-child(1){
+    padding-top: 3%;
+}
+
+.divInputRegister label {
+    color: black;
+    font-size: 14px;
+}
+
+.divButton{
+    width: 150px;
+    height: 50px;
+    margin: 10px auto ;
+    font-size: 16px;
+}
+.button:hover{
+    cursor: pointer;
+    opacity: 0.6;
+}
+.redirectParent{
+    position: absolute;
+    left: 50%;
+    bottom: 0%;
+}
+.redirect {
+    font-style: italic;
+    color: #8e92c8;
+    text-align: center;
+    font-size: 16px;
+    position: relative;
+    bottom: 0%;
+    right: 50%;
+}

@@ -4,21 +4,17 @@ module.exports = {
     test: function(req, res){
         res.json('done');
     },
+
     createGroup: function(req, res){
         try {
-            var group = new Group({
-                name: 'nhóm đỉnh cao',
-                description: 'mô tả đỉnh cao',
-                avatarUrl: 'http://localhost:3000/',
-                founder: 'quangdeptrai',
-                members: ''
-            })
-            group.save(function(err, data) {
-                if (err) return next(err);
+            const {name, description, avatarUrl, founder, members} = req.body;
+            var group = new Group({ name, description, avatarUrl, founder, members})
+            group
+            .save(function(err, data) {
+                if (err) return console.log(err);
                 return res.status(200).json({
                     code: 200,
                     success: true,
-                    data
                 });
             });
         } 
@@ -35,30 +31,43 @@ module.exports = {
     getGroupInfo: function(req, res){
         try {
             var groupID = req.params.groupID;
-            Group.findById(groupID,'member name founder description')
+            Group
+            .findById(groupID,'name founder description')
+            .populate('members','avatarUrl fullName')
             .then(group => {
-                res.json({
-                    data: group
-                });
+                res.json({group});
             })
         }
         catch (e) {
             console.log('===================>', e)
-            res.status(400).json('error');
+            res.status(404).json({
+                code: 404,
+                success: false,
+                message: 'không tìm thấy'
+            });
         }     
     },
+
     editGroupInfo: function(req, res){
         try {
+            const {name, description, founder, avatarUrl} = req.body;
             var groupID = req.params.groupID;
-            Group.findByIdAndUpdate(groupID,{ name: 'name', $set: {description: 'description2'}, $set: {founder: 'founder'}, $set: {avatarUrl: 'avatarUrl'}})
+            Group
+            .findByIdAndUpdate(groupID,{ name: name, description: description, founder: founder, avatarUrl: avatarUrl})
             .then(group =>{
-                res.json({data: group});
-                res.sendStatus(200).json('ok');
+                res.sendStatus(200).json({
+                    code: 200,
+                    success: true,
+                });
             })
         }
         catch(e){
             console.log('===================>', e)
-            res.status(500).json('error');
+            res.status(400).json({
+                code: 400,
+                success: false,
+                message: 'có gì đó không đúng'
+             })
         }
     }
 };

@@ -8,13 +8,19 @@ userRouter.route('/test')
 userRouter.route('/:userID')
     .get(userHelper.getUserInfo)
 
+userRouter.route('/:userID/home')
+    .get(userHelper.getHomeInfo)
+
 userRouter.route('/:userID')
     .put(userHelper.editUserInfo)
 
-userRouter.route('/userID/pass')
+userRouter.route('/:userID/pass')
     .put(userHelper.changePassword)
 
 userRouter.route('/:userID/friends')
     .get(userHelper.getListFriend)
+
+userRouter.route('/:userID/groups')
+    .get(userHelper.getListGroup)
 
 module.exports = userRouter;

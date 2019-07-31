@@ -1,52 +1,66 @@
 .white-title {
-    color:white;
+  color:white;
 }
 .black-title{
-    color: black;
+  color: black;
 }
 .title{
-    font-size: 15px;
+  font-size: 15px;
+  margin-bottom:5px;
 }
 .input {
-    width: 100%;
-    padding: 15px;
-    border: 1px solid #ededed;
-    border-radius: 10px;
-    box-sizing: border-box;
-    outline: none;
-    font-size: 17px;
+  /*width: 100%;*/
+  border: 1px solid #ededed;
+  border-radius: 10px;
+  box-sizing: border-box;
+  outline: none;
+
+}
+.input:focus{
+box-shadow: 1px 1px 4px 1px rgb(197, 195, 195,0.5);
+}
+.small-input{
+  padding: 10px;
+  font-size: 13px;
+}
+.big-input{
+padding: 15px;
+font-size: 15px;
 }
 
 .image-right{
-    width: 25px;
-    height: 25px;
-    position: absolute;
-    right: 10px;
-  }
-  .image-right:hover{
-    cursor: pointer;
-  }
-  .image-left{
-    width: 35px;
-    height: 35px;
-    position: absolute;
-    left: 10px;
-  }
-  .image-left:hover{
-    cursor: pointer;
-  }
+  width: 25px;
+  height: 25px;
+  position: absolute;
+  right: 15px;
+
+}
+
+.image-right:hover{
+  cursor: pointer;
+}
+.image-left{
+  width: 35px;
+  height: 35px;
+  position: absolute;
+  left: 10px;
+}
+.image-left:hover{
+  cursor: pointer;
+}
 
 /* .l.. */
 .inputLable {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
 }
 
 .show-icon-left {
-    padding-left: 45px;
+  padding-left: 45px;
 }
 
 .show-icon-right {
-    padding-right: 35px;
+  padding-right: 45px !important;
 }

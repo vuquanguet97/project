@@ -4,9 +4,8 @@
     color: #212529;
     text-align: center;
     border: 1px solid transparent;
-    padding: .375rem .75rem;
-    font-size: 1.2rem;
-    line-height: 1.5;
+    padding: 15px 15px;
+    font-size: 80%;
     border-radius: .50rem;
     outline: none;
     margin: 10px;
@@ -34,4 +33,49 @@
     background-color: #541333;
     color: #ffffff;
 
+}
+.purple-header{
+    background-color:#461d6c;
+    color: #ffffff;
+    padding: 0;
+    margin: 0;
+    color: #ffffff;
+    font-size: 40px;
+    padding-bottom: 1px;
+}
+
+.mini{
+    height: 50px;
+    width: 63px;
+}
+
+.large{
+    height: 50px;
+    width: 150px;
+}
+.button:disabled{
+    cursor: no-drop;
+}
+.image{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    height: 30px;
+    margin: 0;
+}
+
+.circle{
+    background-color: #702faf;
+    border-radius: 60%;
+    width:35px;
+    height:35px;
+    padding: 4%;
+    font-size: 15px;
+    margin: 0%;
+}
+
+.add-button{
+    padding:10px;
+    width: 66px;
 }

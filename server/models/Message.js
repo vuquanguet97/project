@@ -7,7 +7,12 @@ const messageSchema = new mongoose.Schema({
 	},
 	to: {
 		type: mongoose.Schema.Types.ObjectId,
-		ref: 'User',
+		refPath: 'type',
+	},
+	type: {
+		type: String,
+		required: true,
+		enum: ['User', 'Group']
 	},
 	content: String,
 }, {
