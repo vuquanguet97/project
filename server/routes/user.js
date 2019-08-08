@@ -1,26 +1,37 @@
 const express = require('express');
 const userRouter = express.Router();
-const userHelper = require('../helper/user')
+const userHelper = require('../helper/user');
+const {withAuth} = require('../middleware/middleware');
 
-userRouter.route('/test')
-    .get(userHelper.test)
+userRouter.route('/search/:search')
+    .get(withAuth, userHelper.searchFriend);
 
 userRouter.route('/:userID')
-    .get(userHelper.getUserInfo)
+    .get(withAuth, userHelper.getUserInfo)
+	.put(userHelper.editUserInfo);
 
 userRouter.route('/:userID/home')
-    .get(userHelper.getHomeInfo)
-
-userRouter.route('/:userID')
-    .put(userHelper.editUserInfo)
+    .get(withAuth, userHelper.getHomeInfo);
 
 userRouter.route('/:userID/pass')
-    .put(userHelper.changePassword)
+    .put(withAuth, userHelper.changePassword);
 
 userRouter.route('/:userID/friends')
-    .get(userHelper.getListFriend)
+    .get(withAuth, userHelper.getListFriend);
 
 userRouter.route('/:userID/groups')
-    .get(userHelper.getListGroup)
+    .get(withAuth, userHelper.getListGroup);
+
+userRouter.route('/:userID/request')
+    .get(withAuth, userHelper.getListRequestingFriend);
+
+userRouter.route('/:userID/requested')
+    .get(withAuth, userHelper.getListRequestedFriend);
+
+userRouter.route('/:userID/makingRequest')
+    .put(withAuth, userHelper.sendingRequestAddFriend);
+
+userRouter.route('/:userID/friendProcess')
+    .put(userHelper.actionFriendRequest);
 
 module.exports = userRouter;

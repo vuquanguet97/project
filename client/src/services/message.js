@@ -1,26 +1,23 @@
 import axios from "axios";
 import {handleResponse} from "./index";
 
-export const getMessages = (data) => {
-	const { type } = data;
+export const getMessages = (params, signal) => {
+	const { type } = params;
 
 	switch (type) {
-		case 'Group':
-			return axios.get('/message', {
-				params: {
-					type,
-					groupID: data.groupID,
-				}
-			}).then(handleResponse).catch(handleResponse);
-		case 'User':
-			return axios.get('/message', {
-				params: {
-					type,
-					from: data.from,
-					to: data.to,
-				}
-			}).then(handleResponse).catch(handleResponse);
+		case 'Group': case 'User':
+			return new Promise((resolve, reject) => {
+				signal.addEventListener('abort', () => reject({
+					error: 'Cancel Promise'
+				}));
+
+				axios.get('/message', { params })
+					.then((data) => resolve(handleResponse(data)))
+					.catch(handleResponse);
+			});
 		default:
-			return;
+			return Promise.reject({
+				error: 'Type can only be Group or User'
+			});
 	}
 };

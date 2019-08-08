@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './TextChat.css';
 import Contact from '../../common/Contact/Contact.js';
+import defaultAvatar from '../../assets/male-avatar.png';
 
 const MessageLeft = ({avatar, message, showAvatar}) => {
 	return (<div className='listTextLeft'>
@@ -58,19 +59,22 @@ class TextChat extends React.Component {
 
 	render() {
 		const messageHistory = this.props.messages.map((message, index, messages) => {
+			const avatar = this.props.members[message.from] &&
+				(this.props.members[message.from].avatarUrl || defaultAvatar);
+
 			if (index === 0) {
 				return message.from !== this.props.userID ? (
 					<MessageLeft
 						key={index}
 						message={message.content}
 						showAvatar={true}
-						avatar={this.props.avatar}
+						avatar={avatar}
 					/>
 				) : (
 					<MessageRight
 						message={message.content}
 						showAvatar={true}
-						avatar={this.props.avatar}
+						avatar={avatar}
 						key={index}
 					/>
 				);
@@ -92,14 +96,14 @@ class TextChat extends React.Component {
 						key={index}
 						message={message.content}
 						showAvatar={true}
-						avatar={this.props.avatar}
+						avatar={avatar}
 					/>
 				) : (
 					<MessageRight
 						key={index}
 						message={message.content}
 						showAvatar={true}
-						avatar={this.props.avatar}
+						avatar={avatar}
 					/>
 				);
 			}

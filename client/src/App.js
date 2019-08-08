@@ -4,15 +4,8 @@ import {BrowserRouter as Router, Route, Redirect} from 'react-router-dom';
 import Register from "./screens/Register";
 import Login from "./screens/Login";
 import Chat from "./screens/Chat";
-import axios from 'axios';
 
 class App extends React.Component {
-	componentDidMount() {
-		axios.get('/user/test')
-			.then(console.log)
-			.catch(console.log)
-	}
-
 	render() {
 		return (
 			<Router>

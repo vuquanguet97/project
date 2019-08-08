@@ -1,6 +1,6 @@
 const {Group} = require('../models');
 
-module.exports = { 
+module.exports = {
     test: function(req, res){
         res.json('done');
     },
@@ -17,7 +17,7 @@ module.exports = {
                     success: true,
                 });
             });
-        } 
+        }
         catch (e) {
             console.log('===================>', e)
             res.status(400).json({
@@ -31,12 +31,20 @@ module.exports = {
     getGroupInfo: function(req, res){
         try {
             var groupID = req.params.groupID;
-            Group
-            .findById(groupID,'name founder description')
-            .populate('members','avatarUrl fullName')
-            .then(group => {
-                res.json({group});
-            })
+            if(userID != founder){
+                res.status(404).json({
+                    code: 404,
+                    success: false,
+                    message: 'Không được phép'
+                });
+            }else{
+                Group
+                .findById(groupID,'name founder description')
+                .populate('members','avatarUrl fullName')
+                .then(group => {
+                    res.json(group);
+                })
+            } 
         }
         catch (e) {
             console.log('===================>', e)
@@ -45,17 +53,18 @@ module.exports = {
                 success: false,
                 message: 'không tìm thấy'
             });
-        }     
+        }
     },
 
     editGroupInfo: function(req, res){
         try {
-            const {name, description, founder, avatarUrl} = req.body;
+            const {name, description, founder, avatarUrl, members} = req.body;
             var groupID = req.params.groupID;
             Group
-            .findByIdAndUpdate(groupID,{ name: name, description: description, founder: founder, avatarUrl: avatarUrl})
+            .findByIdAndUpdate(groupID,{ name: name, description: description, founder: founder, avatarUrl: avatarUrl, members: members})
             .then(group =>{
-                res.sendStatus(200).json({
+                console.log(group)
+                res.status(200).json({
                     code: 200,
                     success: true,
                 });

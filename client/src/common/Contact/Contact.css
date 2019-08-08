@@ -1,10 +1,8 @@
 .parent {
 	display: flex;
 	align-items: center;
-	margin-bottom: 12px;
-
+	width: 100%;
 }
-
 .red-text {
 	margin-left: 5px;
 }

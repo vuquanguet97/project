@@ -52,7 +52,7 @@ function authenticate( res, err, user, password, username){
                     if(err){
                         console.log(err);
                     } else {
-                        console.log(res.status(200));
+                        // console.log(res.status(200));
                     }
                 })
             }

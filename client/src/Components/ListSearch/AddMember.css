@@ -1,0 +1,16 @@
+.member{
+    display:flex;
+    flex-direction: row;
+    margin-top:2%;
+}
+
+
+.contact{
+    width: 85%;
+}
+
+
+.member:hover{
+    cursor: pointer;
+    color: blueviolet;
+}

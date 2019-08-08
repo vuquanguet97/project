@@ -28,7 +28,7 @@ const userSchema = new mongoose.Schema({
 		type: mongoose.Schema.Types.ObjectId,
 		ref: 'User',
 	}],
-	requestingUsers: [{
+	sendingRequests: [{
 		user: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User',
@@ -36,7 +36,7 @@ const userSchema = new mongoose.Schema({
 		seen: Boolean,
 		accepted: Boolean,
 	}],
-	requestedUsers: [{
+	incomingRequests: [{
 		user: {
 			type: mongoose.Schema.Types.ObjectId,
 			ref: 'User',

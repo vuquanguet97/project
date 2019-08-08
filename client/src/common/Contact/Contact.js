@@ -9,9 +9,11 @@ export default class Contact extends React.Component {
 			PropTypes.object,
 			PropTypes.string,
 		]),
+		fullName : PropTypes.string,
 		showName: PropTypes.bool,
 		size: PropTypes.oneOf(['small-contact', 'medium-contact', 'large-contact']),
-		textColor: PropTypes.oneOf(['white-text', 'black-text'])
+		textColor: PropTypes.oneOf(['white-text', 'black-text']),
+		showModal : PropTypes.any,
 	};
 
 	static defaultProps = {
@@ -20,22 +22,20 @@ export default class Contact extends React.Component {
 		textColor: 'black-text',
 	};
 
-
- render() {
-
+	render() {
 		return (
+	<div>
 
 	      <div className={`parent ${this.props.textColor}`}>
-	        <img
-	          className={this.props.size}
-	          src={this.props.avatarUrl}
-	          alt={this.props.name}
-	        />
+			<img
+				onClick = {this.props.showModal}
+				className={this.props.size}
+				src={this.props.avatarUrl}
+				alt={this.props.name}
+			/>
 			{this.props.showName && <span className={'red-text'}>{this.props.name}</span>}
-
 			</div>
-
-
+		</div>
 		)
 	}
 }

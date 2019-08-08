@@ -2,70 +2,139 @@ import React from 'react';
 import Contact from '../../common/Contact/Contact';
 import ContactType from '../../common/ContactType/ContactType';
 import './Listchat.css';
-import Input from '../../common/Input/Input';
 import PropTypes from 'prop-types';
 import Button from '../../common/Button/Button';
 import Notication from './Notication';
+import defaultAvatar from '../../assets/male-avatar.png';
+import Search from '../Search/Search';
+import {getSearchFriend} from '../../services';
+import imgSearch from '../../assets/search.png';
+import Modal from 'react-modal';
+import ListSearch from '../ListSearch/ListSearch';
+
+Modal.setAppElement('#root')
 
 class ListChat extends React.Component {
 	static propTypes = {
-		listContact: PropTypes.array,
+		listFriends: PropTypes.array,
 		listGroup: PropTypes.array,
 		listAvatar: PropTypes.array,
 	};
 
-	render() {
+	constructor(props) {
+		super(props);
+		this.state = {
+			search: "",
+			findByFullName: [],
+			modalIsOpen: false
+		}
+	}
 
+	openModal = () => {
+		this.setState({modalIsOpen: true});
+	};
+
+	closeModal = () => {
+		this.setState({modalIsOpen: false, search: "", findByFullName: []});
+	};
+
+	handleChangeSearch = (event) => {
+		const {name, value} = event.target;
+		this.setState({[name]: value});
+	};
+
+	handleEnterPressSearch = (event) => {
+		const {search} = this.state;
+		if (event.charCode === 13) {
+			if (search.length === 0) {
+				this.setState({findByFullName: []});
+			}
+			if (search.length > 0) {
+				this.setState({modalIsOpen: true});
+				getSearchFriend(search)
+					.then(data => {
+						this.setState({findByFullName: data})
+					})
+					.catch(err => {
+							console.log(err)
+						}
+					);
+			}
+		}
+	};
+
+	render() {
+		const {user, listFriends, listGroup, pickedContact, onPickContact} = this.props;
+		const {findByFullName, search} = this.state;
 		return (
 			<div className="left-column">
-				<div className={`card-header`}>
-					<Contact
-						avatarUrl={this.props.user.avatarUrl}
-						name={this.props.user.name}
-						size={'medium-contact'}
-						textColor={'white-text'}
-					/>
-					<div className={"card-button"}>
-						<Notication counter={1}
-						/>
-						&nbsp; &nbsp; &nbsp;
-						<Button
-							onClick={() => {
-							}}
-							title={'+'}
-							themeColor={'purple-header'}
-							// size={'mini'}
-						/>
+				<div className="card-header-container">
+					<div className={`card-header`}>
+						<div
+							className={'listChat-profile'}
+							onClick={this.props.toggleProfileModal}
+						>
+							<Contact
+								avatarUrl={user.avatarUrl}
+								name={user.fullName}
+								size={'medium-contact'}
+								textColor={'white-text'}
+							/>
+						</div>
+						<div className={"card-button"}>
+							<Notication
+								counter={1}
+								showModal={this.props.toggleNotificationModal}
+							/>
+							&nbsp; &nbsp; &nbsp;
+							<Button
+								onClick={() => {
+								}}
+								title={'+'}
+								themeColor={'invisible-header'}
+								// size={'mini'}
+							/>
+						</div>
 					</div>
 
-				</div>
-				<div className={"card-input"}>
-					<Input
-						value={this.props.value}
-						placeholder={"Search"}
-						onChange={(e) => this.setState({text: e.target.text})}
-						inputSize={"small-input"}
-						showTitle={false}
-					/>
-
+					<div className={"card-input"}>
+						<Search
+							position="searchLeft"
+							imgName={imgSearch}
+							placeholder="Tìm kiếm bạn bè"
+							className="inputSearch"
+							value={this.state.search}
+							name="search"
+							onChange={this.handleChangeSearch}
+							onKeyPress={this.handleEnterPressSearch}
+						/>
+					</div>
 				</div>
 				<div className={`card-body `}>
 					<div className={`type1`}>
 						<ContactType
-							type="Group"
-							available={3}
+							type="Nhóm"
+							available={listGroup.length}
 						/>
-						<div className="test"></div>
+						<div className="line"></div>
 						<div className={`card-body1 scrollbar`}>
-							{this.props.listGroup && this.props.listGroup.map(function (value, index) {
+							{listGroup && listGroup.map(function (value, index) {
+								const avatar = value.avatarUrl || defaultAvatar;
+								const isPicked = value._id === pickedContact._id;
+
 								return (
-									<Contact
+									<div
 										key={index}
-										name={value.name}
-										avatarUrl={value.avatarUrl}
-										size={"small-contact"}
-										textColor={"white-text"}
-									/>
+										className={`contact-container ${isPicked && 'contact-focus'}`}
+										onClick={() => onPickContact(value, 'Group')}
+									>
+										<Contact
+											name={value.name}
+											avatarUrl={avatar}
+											size={"small-contact"}
+											textColor={"white-text"}
+										/>
+									</div>
 								);
 							})}
 						</div>
@@ -75,25 +144,46 @@ class ListChat extends React.Component {
 				<div className={`card-body`}>
 					<div className={`type2`}>
 						<ContactType
-							type="Friend"
-							available={1}
+							type="Bạn bè"
+							available={listFriends.length}
 						/>
-						<div className="test"></div>
+						<div className="line"></div>
 					</div>
 
 					<div className={`card-body2 scrollbar`}>
-						{this.props.listContact && this.props.listContact.map(function (value, index) {
+						{listFriends && listFriends.map(function (value, index) {
+							const avatar = value.avatarUrl || defaultAvatar;
+							const isPicked = value._id === pickedContact._id;
+
 							return (
-								<Contact
+								<div
 									key={index}
-									name={value.name}
-									avatarUrl={value.avatarUrl}
-									size={"small-contact"}
-									textColor={"white-text"}
-								/>);
+									className={`contact-container ${isPicked && 'contact-focus'}`}
+									onClick={() => onPickContact(value, 'User')}
+								>
+									<Contact
+										name={value.fullName}
+										avatarUrl={avatar}
+										size={"small-contact"}
+										textColor={"white-text"}
+									/>
+								</div>
+							);
 						})}
 					</div>
 				</div>
+				<Modal
+					isOpen={this.state.modalIsOpen}
+					contentLabel="Search Modal"
+					className="Modal"
+					overlayClassName="Overlay"
+				>
+					<ListSearch
+						listSearch={findByFullName}
+						keyword={search}
+						onClickCloseModal={this.closeModal}
+					/>
+				</Modal>
 			</div>
 		);
 	}

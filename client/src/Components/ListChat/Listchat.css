@@ -1,100 +1,117 @@
-.left-column{
-    float: left;
+.left-column {
     width: 25%;
     min-width: 280px;
-    /* background-color: #ac61f2; */
     padding: 0px;
     height: 100vh;
-    /* border: solid 2px #ac61f2; */
-    background: rgb(70,29,108);
-    background: linear-gradient(180deg, rgba(70,29,108,1) 11%, rgb(163, 64, 146) 100%);
-    -webkit-box-shadow: 10px 3px 13px -8px rgba(112,67,112,0.57);
--moz-box-shadow: 10px 3px 13px -8px rgba(112,67,112,0.57);
-box-shadow: 10px 3px 13px -8px rgba(112,67,112,0.57);
-  }
-  .right-column{
+    position: relative;
+    background: rgb(97, 33, 156);
+    background: linear-gradient(180deg,rgba(70, 29, 108, 1) 11% , rgb(139, 42, 123) 100%);
+}
+.left-column::before{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 55%;
+    background-color: rgba(158, 158, 158, 0.1);
+    z-index: 2;
+    pointer-events: none;
+}
+.right-column {
     float: right;
     width: 70%;
-    /* background-color: black; */
-  }
-  /* @media screen and (max-width: 800px) {
-    .left-column, .right-column {   
-      width: 100%;
-      padding: 0;
-    }
-  } */
-  .card-header {
-    /* background-color:#702faf; */
+}
+
+.card-header {
     padding: 10px;
     margin-top: 0;
     position: relative;
-    height: 9%;
     color: #ffffff;
-  }
-
-  .card-input{
-    /* background-color:#702faf; */
+}
+.card-header-container{
+    box-shadow: 0px 5px 3px -2px rgba(0,0,0,0.1);
+    height: 30%;
+    min-height: 120px;
+    max-height: 120px;
+    background-color: rgba(70, 29, 108, 0.5);
+    background-image: url('../../assets/background.svg');
+    background-blend-mode: multiply;
+}
+.card-input {
     padding: 0;
     margin: 0;
     color: #ffffff;
-  }
+}
 
-  .card-button{
+.card-button {
     position: absolute;
     bottom: 0;
     right: 30px;
     display: -webkit-inline-box;
     flex-direction: row;
-  }
+}
 
-  
-  .card-body{
-    /* background-color: #ac61f2; */
+
+.card-body {
     color: #ffffff;
-    height: 30%;
-  }
+    height: 37%;
+}
 
-  .type1{
-    height:30%
-  }
-  
-  .card-body1{
-    margin-top:2%;
-    margin-left:4%;
-    margin-right:3%;
-    height: 235%;
-    overflow: auto;
-   
-  }
+.type1 {
+    height: 100%;
+}
 
-  .type2{
-    height:30%;
-  }
-  .card-body2{
-    height: 142%;
-    margin-left: 4%;
-    margin-right:3%;
+.card-body1 {
+    height: 82%;
     background-repeat: no-repeat;
     background-position: 25% 75%;
     overflow: auto;
-  }  
-  .row:after {
+    margin: 2%;
+}
+
+.type2 {
+
+}
+
+.card-body2 {
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: 25% 75%;
+    overflow: auto;
+    margin: 2%;
+}
+
+.row:after {
     content: "";
     display: table;
     clear: both;
-  }
-  .member-button{
+}
+
+.member-button {
     display: flex;
     flex-direction: row;
-  }
- 
-  .test{
-    width: 80%;
-    background-color: #ffffff;
-    height: 1px;
-    margin-left: 15px;
-    margin-bottom: 0%;
-  }
+}
 
 
-  
+
+.contact-container {
+    background-color: inherit;
+    padding: 2% 2%;
+    margin: 1% 2%;
+    border-radius: 5px;
+}
+
+.contact-container:hover {
+    background-color: #b847a5;
+    cursor: pointer;
+}
+
+.contact-focus {
+    background-color: #c66cb7;
+}
+
+.listChat-profile:hover {
+    cursor: pointer;
+    opacity: 0.8;
+}

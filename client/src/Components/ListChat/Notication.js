@@ -6,22 +6,27 @@ import image2 from '../../assets/request.png';
 import Button from '../../common/Button/Button';
 import './Notication.css';
 
+class Notication extends React.Component {
+	static proTypes = {
+		counter: PropTypes.number,
+	};
 
-class Notication extends React.Component{
-    static proTypes={
-        counter: PropTypes.number,
-    }
-
-    render(){
-        return(
-            <div >
-                <NotificationBadge className="style2" count={this.props.counter} effect={Effect.SCALE}/>
-                <Button
-                    themeColor={"purple-header"}
-                    imageUrl={image2}
-                />
-            </div>
-        )
-    }
+	render() {
+		return (
+			<div>
+				<NotificationBadge
+					className="style2"
+					count={this.props.counter}
+					effect={Effect.SCALE}
+				/>
+				<Button
+					themeColor={"invisible-header"}
+					imageUrl={image2}
+					onClick={this.props.showModal}
+				/>
+			</div>
+		)
+	}
 }
+
 export default Notication;

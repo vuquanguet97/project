@@ -1,0 +1,112 @@
+.list-request{
+    width: 50%;
+    height: 80%;
+    position: absolute;
+    top:10%;
+    right: 25%;
+    min-width: 360px;
+    box-shadow: 0 4px 6px 0 rgba(0,0,0,0.1),0 6px 20px 0 rgba(0,0,0,0.1);
+    background-color: #ffffff;
+    -webkit-animation-name: test;
+    -webkit-animation-duration: 0.4s;
+    animation-name: test;
+    animation-duration: 0.4s;
+    border-radius: 5px;
+    
+    
+}
+.modal {
+    position: absolute; /* Stay in place */
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    z-index: 1; /* Sit on top */
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+
+@-webkit-keyframes test {
+    0% {
+        top:-10%; 
+        opacity:0
+    }
+    100% {
+        top:10%;
+        opacity:1
+    }
+}
+
+@keyframes test {
+    0% {
+        top:-10%; 
+        opacity:0
+    }
+    100% {
+        top:10%;
+        opacity:1
+    }
+}
+
+
+.card1{
+    display: flex;
+    flex-direction: row;
+    border-top-left-radius: 5px;
+    border-top-right-radius:5px;
+    background-color:#ac61f2;
+    background: linear-gradient(90deg, rgb(163, 64, 146) 13%, rgba(70,29,108,1));
+}
+
+.card2{
+    padding-left: 2%;
+    background-color: #ffffff; 
+    margin: 4%;
+    height: 420px;
+    overflow: auto;
+    border-radius: 5px;
+    min-height:420px;
+}
+
+.card3{
+    background-color: #c489ff;
+    background: linear-gradient(90deg, rgba(70,29,108,1) 11%, rgb(163, 64, 146) 100%);
+}
+
+.card5{
+    position: absolute;
+    right: 4px;
+    top: 10px;
+}
+
+.display-block{
+    display: block;
+}
+
+.display-none{
+    display:none;
+}
+
+.tab{
+    width: 316.5px;
+    min-width: 120px;
+}
+
+.react-tabs__tab--selected{
+    border:none !important;
+    font-weight: 600;
+    color: #4f1788 !important;
+} 
+
+.react-tabs__tab{
+    color: #ffffff;
+    text-align: center;
+    min-width: 120px;
+    
+}
+
+.react-tabs__tab-list{
+    border-bottom:none !important;
+}

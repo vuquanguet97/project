@@ -1,18 +1,78 @@
-.logoLogin{
-    width: 50%;
-    margin: 10% 0 0 25%;
+.st0{display:none;}
+.st1{
+    display:inline;
+    fill:#9757C9;
 }
-.sloganLogin{
+.st2{
+    display:inline;
+    fill:#BDA2E0;
+}
+.st3{
+    fill:#8E93C9;
+    animation: wind 3s ease-in-out infinite;
+}
+.st4{
+    fill:#A9AEDD;
+    animation: wind 3s ease-in-out infinite;}
+.st5{
+    fill:#7383C6;
+}
+.st6{
+    fill:none;
+    stroke:#A9AEDD;
+    stroke-miterlimit:10;}
+.st7{
+    fill:#FFFFFF;
+    stroke:#A9AEDD;
+    stroke-miterlimit:10;
+}
+
+    @keyframes wind{
+    0%{
+       transform: rotate(3deg);
+       transform-origin: bottom right;
+    }
+    50%{
+        transform: rotate(0);
+        transform-origin: bottom right;
+    }
+    100%{
+        transform: rotate(3deg);
+        transform-origin: bottom right;
+    }
+}
+
+.containerLogo{
+    width:100%;
+    min-height: 150px;
+}
+.logoLogin {
+    width: 250px;
+    margin: 10% auto 0;
+    min-height: 100px;
+}
+
+.sloganLogin {
     color: #7430b4;
     font-style: italic;
     font-weight: 300;
     font-size: 20px;
+    margin:0;
     text-align: center;
 }
 .logoRegister{
     margin-top: 60%;
     width: 60%;
     margin-left: 20%;
+    height: 15vh;
+    min-height: 100px;
+}
+.logoRegister,.logoRegister .st3,.logoRegister .st4{
+    -webkit-animation: none !important;
+    -moz-animation: none !important;
+    -o-animation: none !important;
+    -ms-animation: none !important;
+    animation: none !important;
 }
 .sloganRegister{
     color: white;
@@ -20,4 +80,5 @@
     font-weight: 300;
     font-size: 20px;
     text-align: center;
+    margin-top: 0px;
 }

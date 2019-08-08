@@ -9,10 +9,12 @@ export default class ContactType extends Component {
 	};
 
 	render() {
+		const { type, available } = this.props;
+
 		return (
 			<div>
 				<div className='setup'>
-					{this.props.type}({this.props.available})
+					{type} ({available})
 				</div>
 			</div>
 		)

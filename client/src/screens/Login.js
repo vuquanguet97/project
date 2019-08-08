@@ -1,7 +1,7 @@
 import React from 'react';
 import InputLogin from '../Components/InputLogin/InputLogin';
 import {loginUser} from "../services";
-
+import errorImage from '../assets/error.png'
 class Login extends React.Component {
 	constructor(props) {
 		super(props);
@@ -12,6 +12,10 @@ class Login extends React.Component {
 				username: "",
 				password: ""
 			},
+            statusBoxColor: "",
+            statusDisplay: "",
+            statusImage: "",
+			formValid: false,
 			usernameValid: false,
 			passwordValid: false,
 		}
@@ -28,7 +32,7 @@ class Login extends React.Component {
 	}
 
 	validateFeild(name, value) {
-		let fieldValidationErrors = this.state.formErrors;
+		const fieldValidationErrors = this.state.formErrors;
 		let passwordValid = this.state.passwordValid;
 		let usernameValid = this.state.usernameValid;
 		let numbers = /[0-9]/g;
@@ -71,20 +75,33 @@ class Login extends React.Component {
 				this.props.history.push(`/home`)
 			})
 			.catch(data => {
-				console.log(data);
+				if(data){
+					this.setState({
+						statusBoxColor: "failed",
+						statusDisplay: "Vui lòng kiểm tra lại tên đăng nhập hoặc mật khẩu",
+						statusImage: errorImage
+					});
+				}
 			});
-	}
-
+		}
+	handleClickAlert = () =>{
+			this.setState({statusBoxColor: "", statusDisplay: ""});
+		}
 	render() {
-		const {username, password, formErrors} = this.state;
+		const {username, password, formErrors, formValid, statusBoxColor, statusDisplay, statusImage} = this.state;
 		return (
-			<InputLogin
-				handleSubmit={this.handleSubmit}
-				handleChange={this.handleChange}
-				username={username}
-				formErrors={formErrors}
-				password={password}
-			/>
+				<InputLogin 
+					handleSubmit = {this.handleSubmit}
+					handleChange = {this.handleChange}
+					username = {username}
+					formErrors = {formErrors}
+					password = {password}
+					formValid = {formValid}
+					statusBoxColor = {statusBoxColor}
+					statusDisplay = {statusDisplay}
+					statusImage = {statusImage}
+					handleClickAlert = {this.handleClickAlert}
+				/>
 		);
 	}
 }

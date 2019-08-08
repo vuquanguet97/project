@@ -11,7 +11,7 @@ class Button extends Component{
             'purple-secondary',
             'grey-primary',
             'maroon-primary',
-            'purple-header',
+            'invisible-header',
         ]).isRequired,
         size: PropTypes.oneOf([
             'mini',

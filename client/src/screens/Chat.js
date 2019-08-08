@@ -1,58 +1,108 @@
 import React from 'react';
 import ListChat from "../Components/ListChat/ListChat";
 import ChatBox from "../Components/ChatBox/ChatBox";
+import {getPersonalInfo} from "../services";
+import _ from 'lodash';
+import ModalForm from "../common/Profile/ModalForm";
+import ListRequest from "../Components/ListRequest/ListRequest";
 
 class Chat extends React.Component {
+	userID = localStorage.getItem('userID');
+
+	state = {
+		userData: {},
+		pickedContact: {},
+		pickedContactType: '',
+
+		showProfileModal: false,
+		showNotificationModal: false,
+	};
+
+	componentDidMount() {
+		getPersonalInfo(this.userID)
+			.then(userData => {
+				this.setState({ userData })
+			})
+			.catch(console.log);
+	}
+
+	toggleProfileModal = () => {
+		const { showProfileModal } = this.state;
+		this.setState({
+			showProfileModal: !showProfileModal,
+			showNotificationModal: false,
+		})
+	};
+
+	toggleNotificationModal = () => {
+		const { showNotificationModal } = this.state;
+		this.setState({
+			showProfileModal: false,
+			showNotificationModal: !showNotificationModal,
+		})
+	};
+
+	pickContact = (contact, type) => {
+		this.setState({
+			pickedContact: contact,
+			pickedContactType: type,
+		})
+	};
+
 	render() {
+		const {
+			userData: { avatarUrl, fullName, groups, friends },
+			pickedContact,
+			pickedContactType,
+			showNotificationModal,
+			showProfileModal
+		} = this.state;
+		const members = pickedContactType === 'User' && [
+			{
+				fullName,
+				avatarUrl,
+				_id: this.userID,
+			},
+			pickedContact,
+		];
+		const membersObject = !!members &&
+			_.zipObject(members.map(({ _id }) => _id), members);
+
 		return (
 			<div>
-				<ListChat
-					listGroup={[
-						{
-							name: 'Dung',
-							avatarUrl: 'https://icon-library.net/images/facebook-user-icon/facebook-user-icon-19.jpg',
-						},
-						{
-							name: 'Dung',
-							avatarUrl: 'https://icon-library.net/images/facebook-user-icon/facebook-user-icon-19.jpg',
-						},
-						{
-							name: 'Dung',
-							avatarUrl: 'https://icon-library.net/images/facebook-user-icon/facebook-user-icon-19.jpg',
-						},
-					]}
-					listContact={[
-						{
-							name: 'Dung',
-							avatarUrl: 'https://icon-library.net/images/facebook-user-icon/facebook-user-icon-19.jpg',
-						},
-						{
-							name: 'Dung',
-							avatarUrl: 'https://icon-library.net/images/facebook-user-icon/facebook-user-icon-19.jpg',
-						},
-						{
-							name: 'Dung',
-							avatarUrl: 'https://icon-library.net/images/facebook-user-icon/facebook-user-icon-19.jpg',
-						},
-					]}
-					user={{
-						avatarUrl: 'https://icon-library.net/images/facebook-user-icon/facebook-user-icon-19.jpg',
-						name: 'Dung'
-					}}
+				<div className="wrapChat">
+					<ListChat
+						listGroup={groups || []}
+						listFriends={friends || []}
+						user={{
+							avatarUrl,
+							fullName,
+						}}
+						pickedContact={pickedContact}
+						onPickContact={this.pickContact}
+						toggleProfileModal={this.toggleProfileModal}
+						toggleNotificationModal={this.toggleNotificationModal}
+					/>
+					{pickedContactType ? (
+						<ChatBox
+							to={pickedContact}
+							type={pickedContactType}
+							members={membersObject}
+						/>
+					) : (
+						<div>
+							hello
+						</div>
+					)}
+				</div>
+				<ModalForm
+					showModal={showProfileModal}
+					toggleModal={this.toggleProfileModal}
 				/>
-				<ChatBox
-					to={'5d3b2b8fb87876330856d888'}
-					members={[
-						'5d3ab15eea1344157870596f',
-						'5d3aa2456c8f6d2e242928b7',
-						'5d3fa0b800ade52e68af03d1',
-					]}
-					type={'Group'}
+				<ListRequest
+					show={showNotificationModal}
+					toggleModal={this.toggleNotificationModal}
 				/>
-				{/*<ChatBox*/}
-					{/*to={'5d3ab15eea1344157870596f'}*/}
-					{/*type={'User'}*/}
-				{/*/>*/}
 			</div>
 		);
 	}

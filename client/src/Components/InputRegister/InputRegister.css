@@ -1,7 +1,7 @@
 section{
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(rgb(244, 213, 255),rgb(174, 255, 224));
+    background: radial-gradient(circle, rgba(243,242,255,1) 31%, rgba(145,206,255,1) 100%);
     overflow: hidden;
     display: flex;
     align-items: center;
@@ -27,6 +27,22 @@ section{
     background: #7430b4;
     opacity: 0.8;
 }
+.green{
+    background-color: #25c53a; 
+    transition: 0.5s;
+    color: white;
+    
+}
+.red{
+    background-color: #e74646;
+    transition: 0.5s;
+    color: white;
+}
+.textStyle{
+    margin-top: 0;
+    text-align: center;
+    font-size: 80%;
+}
 .right{
     height: 85vh;
     width: 30vw;
@@ -35,8 +51,6 @@ section{
     background-color: white;
     position: relative;
 }
-
-
 .radio{
     margin: 0px 0 10px 20px;
 }

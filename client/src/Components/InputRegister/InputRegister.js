@@ -6,13 +6,14 @@ import Button from '../../common/Button/Button';
 import FormErrors from '../../common/FormErrors/FormErrors';
 import Logo from '../Logo/Logo';
 import {Link} from "react-router-dom";
+import Alert from '../Alert/Alert';
 
 function InputRegister(props){
     return(
     <section>
         <Background/>
         <div className="formRegister">
-        <div className="left">
+        <div className={`left`}>
             <Logo
                 logoPosition="logoRegister"
                 slogan="sloganRegister"
@@ -41,7 +42,6 @@ function InputRegister(props){
                             showTitle={true} type="text"
                             name="fullName"
                             onChange={props.handleChange}/>
-
                     </div>
                     <div>
                         <input
@@ -78,7 +78,7 @@ function InputRegister(props){
                             type="password"
                             name="checkpassword"
                             onChange={props.handleChange}
-                            onBlur={props.handleBlur}/>
+                        />
                         <FormErrors className="formErrors" type={props.formErrors.checkpassword} />
                     </div>
                     <div>
@@ -92,11 +92,13 @@ function InputRegister(props){
                         <FormErrors className="formErrors" type={props.formErrors.email} />
                     </div>
                     <div className="divButton">
-                        <Button
-                            title="ĐĂNG KÝ"
-                            size="large"
-                            themeColor="purple-primary"
-                            onClick={props.handleChange}/>
+                        <Button 
+                            title="ĐĂNG KÝ" 
+                            size="large" 
+                            themeColor="purple-primary" 
+                            onClick={props.handleClickAlert}
+                            checkValid={props.formValid}
+                            />
                     </div>
                 </div>
             </form>
@@ -107,7 +109,12 @@ function InputRegister(props){
             </div>
         </div>
     </div>
-    </section>
+    <Alert 
+            statusBoxColor={props.statusBoxColor}
+            statusDisplay={props.statusDisplay}
+            statusImage={props.statusImage}
+        />
+    </section>       
     );
 }
 export default InputRegister;

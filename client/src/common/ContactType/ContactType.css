@@ -1,5 +1,7 @@
 .setup {
 	border : 0;
-	padding: 10px 15px;
+	padding: 10px 16px;
 	font-size: 13px;
+	font-weight: 500;
+	/* color: #ffffff; */
 }

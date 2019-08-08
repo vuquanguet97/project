@@ -1,9 +1,17 @@
 import io from 'socket.io-client';
 
-const socket = io({
-	query: {
-		userID: localStorage.getItem('userID')
-	}
-});
+let socket = null;
 
-export default socket;
+export const getSocket = (userID) => {
+	if (!socket) {
+		socket =  io({
+			query: {
+				userID,
+			}
+		});
+
+		return socket;
+	}
+
+	return socket;
+};

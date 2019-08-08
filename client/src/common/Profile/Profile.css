@@ -1,0 +1,68 @@
+.cssProfile{
+	display: flex; 
+	margin : 0 auto; 
+	width:100px;
+	height:100px;
+	border-radius:60%;
+
+}
+.pos-button { 
+	width: 150px;
+	display: flex;
+	margin : 0 auto;
+
+}
+.changeavatar {
+	text-align: center;
+	
+}
+.cangiuatext { 
+	display: flex;
+}
+
+.canlelabel {
+	margin-left: 15px;
+}
+
+.candate {
+    width: 100%;
+    padding: 15px;
+    border: 1px solid #ededed;
+    border-radius: 10px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 17px;
+}
+
+.cantitle {
+	font-size: 15px;
+
+}
+
+.canradio {
+	width: 100%;
+    padding: 8px;
+    border-bottom: 0px solid #ededed;
+    border-radius: 10px;
+    box-sizing: border-box;
+    outline: none;
+    font-size: 17px;
+    display: flex;
+}
+
+.formsize {
+	margin : 0 auto;
+	margin-top: 10px;
+	width : 25vw;
+	height: 400px;
+	max-height: 600px;
+	padding: 0 30px;
+}
+.formsize1 {
+	margin : 0 auto;
+	margin-top: 10px;
+	width : 25vw;
+	height: 500px;
+	max-height: 600px;
+	padding: 0 30px;
+}

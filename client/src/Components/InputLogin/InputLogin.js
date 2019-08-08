@@ -5,6 +5,7 @@ import Input from '../../common/Input/Input';
 import Button from '../../common/Button/Button';
 import FormErrors from '../../common/FormErrors/FormErrors';
 import Logo from '../Logo/Logo';
+import Alert from '../Alert/Alert';
 function InputLogin(props){
     return(
     <div className="background">
@@ -38,10 +39,11 @@ function InputLogin(props){
             </div>
             <div className="buttonLogin">
                 <Button
-                    onClick={() => {}}
                     themeColor="purple-primary"
                     title="ĐĂNG NHẬP"
                     size="large"
+                    checkValid={props.formValid}
+                    onClick={props.handleClickAlert}
                 />
             </div>
         </form>
@@ -51,6 +53,11 @@ function InputLogin(props){
             </p>
         </div>
     </div>
+    <Alert 
+            statusBoxColor={props.statusBoxColor}
+            statusDisplay={props.statusDisplay}
+            statusImage={props.statusImage}
+    />
     </div>
     );
 

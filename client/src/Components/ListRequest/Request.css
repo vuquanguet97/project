@@ -1,0 +1,20 @@
+.request{
+    display:flex;
+    flex-direction: row;
+    margin: 2%;
+}
+
+.contact{
+    width: 85%;
+}
+
+.contact:hover{
+    cursor: pointer;
+    color: blueviolet;
+}
+
+.btn1{
+    position: relative;
+    right: 8%;
+}
+
